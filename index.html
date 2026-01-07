@@ -24,23 +24,24 @@
     <div>
         <!-- NAVBAR & INTRODUCTION SECTION -->
         <div class="flex flex-col gap-y-10 bg-gray-200 border-b-red-600 border-b-2 p-4 md:px-20">
-            <div class="flex flex-row justify-between items-center bg-white p-1 text-gray-200 rounded-3xl lg:rounded-4xl
+            <div class="flex flex-row justify-between items-center bg-white p-1 text-gray-300 rounded-3xl lg:rounded-4xl
             ">
                 <!-- LOGO -->
                 <div class="border-2 border-red-600 mx-4 my-2">
                     <img src="images/logo.png" class="h-5 md:h-10 w-5 md:w-10">
                 </div>
                 <!-- NAV SECTION -->
-                <div class="flex flex-row justify-center items-center gap-x-2">
-                    <p><a href="#Home" class="text-xs font-bold hover:text-red-600">HOME</a></p>
-                    <div class="hidden md:flex items-center gap-x-1">
-                    <a href="#About" class="text-xs font-bold hover:text-red-600">ABOUT US</a>
-                    <a href="#Service" class="text-xs font-bold hover:text-red-600">SERVICES</a>
-                    <a href="#Project" class="text-xs font-bold hover:text-red-600">PROJECTS</a>
-                    <a href="Testimonial" class="text-xs font-bold hover:text-red-600">TESTIMONIALS</a>
-                    <a href="#Contact" class="text-xs font-bold hover:text-red-600">CONTACT</a>
+                <div class="flex flex-row justify-center items-center gap-x-2 lg:gap-x-4">
+                    <div>
+                        <p><a href="#Home" class="text-xs font-bold hover:text-red-600">HOME</a></p>
                     </div>
-                    <a href="#" class="text-xs md:hidden">
+                    <div id="dropdownItem" class="hidden md:flex md:items-center md:gap-x-2">
+                        <a href="#Service" class="text-xs font-bold hover:text-red-600">SERVICES</a>
+                        <a href="#Project" class="text-xs font-bold hover:text-red-600">PROJECTS</a>
+                        <a href="Testimonial" class="text-xs font-bold hover:text-red-600">TESTIMONIALS</a>
+                        <a href="#Contact" class="text-xs font-bold hover:text-red-600">CONTACT</a>
+                    </div>
+                    <a id="dropDownNav" href="#" class="text-xs md:hidden">
                         <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
                             className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -48,9 +49,9 @@
                     </a>
                 </div>
                 <!-- DOWNLOAD -->
-                <div class="font-bold text-xs flex items-center justify-center hover:bg-red-600 hover:text-white hover:p-3 hover:rounded-full transition ease-in duration-500 cursor-pointer">
+                <div  id="download" class="font-bold text-xs flex items-center justify-center hover:bg-red-600 hover:text-white hover:p-3 hover:rounded-full transition ease-in duration-500 cursor-pointer">
                     <p>DOWNLOAD MY CV</p>
-                    <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                    <svg class="h-4 hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
                         className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round"
                             d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
@@ -58,17 +59,27 @@
                 </div>
             </div>
             <div class="flex flex-col justify-center items-center md:grid md:grid-cols-2 gap-y-4 md:gap-x-16 p-10">
-                <div class=" h-40 w-40 md:order-2">
-                    <img src="images/profile.png" alt="image not found" class="w-full h-full rounded-full bg-gray-300 border-2 border-white">
-                </div>
-                <div class="flex flex-col justify-center gap-y-2 items-center md:justify-start md:items-start md:order-1">
-                    <div class="flex flex-col gap-y-3">
-                    <h1 class="text-4xl font-bold"><span class="text-2xl text-red-600">I am</span><br>Andrew Ben</h1>
-                    <p class="font-bold text-gray-400">I am a professional creative design and app Developer. I am working in a multi national company as a UI/UX Designer.</p>
+                <div class="flex flex-col justify-center items-center h-40 w-40 md:h-60 md:w-60 gap-y-2 md:order-2">
+                    <div class="h-30 w-30 md:h-45 md:w-45 rounded-full">
+                        <img id="profile-image" src="images/profile.png" alt="image not found" class="h-full w-full rounded-full bg-gray-300 border-2 border-white">
                     </div>
-                    <div class="flex flex-row gap-x-2 justify-start items-center">
-                        <button>MY SERVICES</button>
-                        <button>RECENT WORKS</button>
+                    <button id="Edit" class="h-10 w-25 px-2 rounded-full flex flex-row justify-center items-center gap-x-2 bg-white text-gray-300 font-bold text-xs md:text-sm hover:bg-red-600 hover:text-white transition ease-in duration-500 cursor-pointer">
+                        Edit Profile 
+                        <svg class="h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                        className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-col justify-center gap-y-4 items-center md:justify-start md:items-start md:order-1">
+                    <div class="flex flex-col gap-y-4">
+                        <div class="text-2xl font-bold text-red-600">I am<br><h3 class="text-4xl font-bold text-black" id="Name">Andrew Ben</h3></div>
+                        <p class="font-bold text-gray-400" id="profile-info">I am a professional creative design and app Developer. I am working in a multi national company as a UI/UX Designer.</p>
+                        </div>
+                        <div class="flex flex-row gap-x-2 justify-start items-start">
+                            <button id="service" class="py-2 px-4 bg-white text-gray-300 font-bold text-xs md:text-sm rounded-full hover:bg-red-600 hover:text-white transition ease-in duration-500 cursor-pointer">MY SERVICES</button>
+                            <button id="recent-work" class="py-2 px-4 bg-white text-gray-300 font-bold text-xs md:text-sm rounded-full hover:bg-black hover:text-white transition ease-in duration-500 cursor-pointer">RECENT WORKS</button>
                     </div>
                 </div>
             </div>
@@ -86,5 +97,7 @@
         <!-- GET IN TOUCH SECTION -->
         <div></div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
