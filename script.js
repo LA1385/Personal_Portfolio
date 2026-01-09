@@ -45,3 +45,35 @@ profileImage.src = savedDefaultImage;
 };
 
 
+// Work process and Best Expertise Section
+const bigCircleIds = document.querySelectorAll(".big-circle");
+const smallCircleIds = document.querySelectorAll(".small-circle");
+const iconIds = document.querySelectorAll(".icon");
+const workProcess = document.getElementById("work-process");
+const workProcessContent = ["Research","Layout","System Design","Documentation"]
+
+
+bigCircleIds.forEach((bigCircleId,index) =>{
+
+    // When Mouse is on it
+    bigCircleId.addEventListener("mouseenter", () =>{
+        bigCircleIds[index].classList.replace("bg-gray-200","bg-red-700");
+        smallCircleIds[index].classList.replace("border-red-400", "border-white");
+        iconIds[index].classList.replace("text-red-700", "text-white");
+        workProcess.innerHTML= workProcessContent[index];
+    });
+
+    // when mouse isn't on it
+    bigCircleId.addEventListener("mouseleave", () => {
+        bigCircleIds[index].classList.replace("bg-red-700","bg-gray-200");
+        smallCircleIds[index].classList.replace("border-white","border-red-400");
+        iconIds[index].classList.replace("text-white","text-red-700");
+        workProcess.innerHTML = "Icon Processes";
+    });
+})
+
+
+
+
+
+
