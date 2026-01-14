@@ -7,6 +7,7 @@ const dropDownItem= document.getElementById("dropdownItem");
 const serviceBtn=document.getElementById("service");
 const recentWorkBtn=document.getElementById("recent-work");
 const profileImage = document.getElementById("profile-image");
+const getInTouchBtn = document.getElementById("get-in-touchBtn");
 
 
 // Function for non-functional button
@@ -18,6 +19,7 @@ function nonFunctionalBtn() {
 downloadBtn.addEventListener("click", nonFunctionalBtn);
 serviceBtn.addEventListener("click", nonFunctionalBtn);
 recentWorkBtn.addEventListener("click", nonFunctionalBtn);
+getInTouchBtn.addEventListener("click", nonFunctionalBtn);
 
 
 // Functional Button
@@ -66,11 +68,57 @@ bigCircleIds.forEach((bigCircleId,index) =>{
     // when mouse isn't on it
     bigCircleId.addEventListener("mouseleave", () => {
         bigCircleIds[index].classList.replace("bg-red-700","bg-gray-200");
-        smallCircleIds[index].classList.replace("border-white","border-red-400");
+        smallCircleIds[index].classList.replace("border-white","border-red-400");   
         iconIds[index].classList.replace("text-white","text-red-700");
         workProcess.innerHTML = "Icon Processes";
     });
-})
+});
+
+
+// Get a service and Delete button functionality
+const getServiceIds = document.querySelectorAll("#get-button");
+const deleteBtns = document.querySelectorAll("#delete-button");
+
+getServiceIds.forEach((getServiceId) =>{
+    getServiceId.addEventListener("click", () =>{
+        alert("Item or information not available,pls check back later")
+    });
+});
+
+
+const deletedItems=JSON.parse(localStorage.getItem("deletedItems") || "[]");
+deleteBtns.forEach((deleteBtn,index) =>{
+    const grandParentDiv =deleteBtn.parentElement.parentElement.parentElement;
+    grandParentDiv.dataset.id = index;
+
+    if (deletedItems.includes(String(index))){
+        grandParentDiv.remove();
+    }
+
+    deleteBtn.addEventListener("click", (e) => {
+        const card=e.target.parentElement.parentElement.parentElement
+        const itemId = card.dataset.id;
+        card.remove();
+
+        const currentDeleted = JSON.parse(localStorage.getItem("deletedItems") || "[]");
+        currentDeleted.push(itemId);
+
+        localStorage.setItem("deletedItems",JSON.stringify(currentDeleted));
+
+        console.log("deleted item id:",itemId);
+        console.log("All deleted items:", currentDeleted);
+    });
+});
+
+// Adding a skill/Service button
+
+const addBtn = document.getElementById("add-button");
+addBtn.addEventListener("click",() =>{
+    
+});
+
+
+
 
 
 
