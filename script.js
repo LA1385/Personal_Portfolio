@@ -1,11 +1,11 @@
-const dropDownNav=document.getElementById("dropDownNav");
-const downloadBtn=document.querySelector("#download");
-const editProfileBtn=document.querySelector("#Edit");
-var profileName=document.getElementById("Name");
+const dropDownNav = document.getElementById("dropDownNav");
+const downloadBtn = document.querySelector("#download");
+const editProfileBtn = document.querySelector("#Edit");
+var profileName = document.getElementById("Name");
 var profileInfo = document.getElementById("profile-info");
-const dropDownItem= document.getElementById("dropdownItem");
-const serviceBtn=document.getElementById("service");
-const recentWorkBtn=document.getElementById("recent-work");
+const dropDownItem = document.getElementById("dropdownItem");
+const serviceBtn = document.getElementById("service");
+const recentWorkBtn = document.getElementById("recent-work");
 const profileImage = document.getElementById("profile-image");
 const getInTouchBtn = document.getElementById("get-in-touchBtn");
 const submitBtn = document.getElementById("submit");
@@ -24,35 +24,35 @@ getInTouchBtn.addEventListener("click", nonFunctionalBtn);
 submitBtn.addEventListener("click", nonFunctionalBtn);
 
 // Functional Button
-const defaultBio ="I am a professional creative design and app Developer. I am working in a multi national company as a UI/UX Designer."
+const defaultBio = "I am a professional creative design and app Developer. I am working in a multi national company as a UI/UX Designer."
 
 editProfileBtn.addEventListener("click", () => {
-    let name=prompt("Enter Your FullName:","Andrew Ben");
+    let name = prompt("Enter Your FullName:", "Andrew Ben");
     if (!name || name.trim() === "") {
         alert("Name cannot be empty!");
         return;
     }
-    let Bio=prompt("Enter Your Bio Description:",defaultBio);
+    let Bio = prompt("Enter Your Bio Description:", defaultBio);
     if (!Bio || Bio.trim() === "") {
         alert("Bio Description cannot be empty!");
         return;
     }
-    let defaultImage="images/default.png";
+    let defaultImage = "images/default.png";
     localStorage.setItem("name", name)
     localStorage.setItem("Bio", Bio)
-    localStorage.setItem("defaultImage",defaultImage)
+    localStorage.setItem("defaultImage", defaultImage)
 
-    profileName.innerHTML=name;
-    profileInfo.innerHTML=Bio;
-    profileImage.src=defaultImage; 
+    profileName.innerHTML = name;
+    profileInfo.innerHTML = Bio;
+    profileImage.src = defaultImage;
 });
 const savedName = localStorage.getItem("name");
 const savedBio = localStorage.getItem("Bio");
 const savedDefaultImage = localStorage.getItem("defaultImage");
-if (savedName){
-profileName.innerHTML = savedName;
-profileInfo.innerHTML = savedBio;
-profileImage.src = savedDefaultImage;
+if (savedName) {
+    profileName.innerHTML = savedName;
+    profileInfo.innerHTML = savedBio;
+    profileImage.src = savedDefaultImage;
 };
 
 
@@ -61,36 +61,36 @@ const bigCircleIds = document.querySelectorAll(".big-circle");
 const smallCircleIds = document.querySelectorAll(".small-circle");
 const iconIds = document.querySelectorAll(".icon");
 const workProcess = document.getElementById("work-process");
-const workProcessContent = ["Research","Layout","System Design","Documentation"]
+const workProcessContent = ["Research", "Layout", "System Design", "Documentation"]
 
 const bgColor = "bg-gray-200";
 const bgColorOnHover = "bg-zinc-900";
-bigCircleIds.forEach((bigCircleId,index) =>{
+bigCircleIds.forEach((bigCircleId, index) => {
 
     // When Mouse is on it
-    bigCircleId.addEventListener("mouseenter", () =>{
-        if (bigCircleIds[index].classList.contains(bgColor)){
-        bigCircleIds[index].classList.replace(bgColor,"bg-red-700");
+    bigCircleId.addEventListener("mouseenter", () => {
+        if (bigCircleIds[index].classList.contains(bgColor)) {
+            bigCircleIds[index].classList.replace(bgColor, "bg-red-700");
         }
-        else{
-        bigCircleIds[index].classList.replace(bgColorOnHover, "bg-red-700");   
+        else {
+            bigCircleIds[index].classList.replace(bgColorOnHover, "bg-red-700");
         }
         smallCircleIds[index].classList.replace("border-red-400", "border-white");
         iconIds[index].classList.replace("text-red-700", "text-white");
-        workProcess.innerHTML= workProcessContent[index];
+        workProcess.innerHTML = workProcessContent[index];
     });
 
     // when mouse isn't on it
     bigCircleId.addEventListener("mouseleave", () => {
-        if (bigCircleIds[index].classList.contains("bg-red-700") && !serviceContainer.classList.contains("bg-black")){
+        if (bigCircleIds[index].classList.contains("bg-red-700") && !serviceContainer.classList.contains("bg-black")) {
             bigCircleIds[index].classList.replace("bg-red-700", bgColor);
         }
-        else{
+        else {
             bigCircleIds[index].classList.replace("bg-red-700", bgColorOnHover);
         }
-        
-        smallCircleIds[index].classList.replace("border-white","border-red-400");   
-        iconIds[index].classList.replace("text-white","text-red-700");
+
+        smallCircleIds[index].classList.replace("border-white", "border-red-400");
+        iconIds[index].classList.replace("text-white", "text-red-700");
         workProcess.innerHTML = "Icon Processes";
     });
 });
@@ -100,40 +100,40 @@ bigCircleIds.forEach((bigCircleId,index) =>{
 const getServiceIds = document.querySelectorAll("#get-button");
 const deleteBtns = document.querySelectorAll("#delete-button");
 
-getServiceIds.forEach((getServiceId) =>{
-    getServiceId.addEventListener("click", () =>{
+getServiceIds.forEach((getServiceId) => {
+    getServiceId.addEventListener("click", () => {
         alert("Item or information not available,pls check back later")
     });
 });
 
 
-const deletedItems=JSON.parse(localStorage.getItem("deletedItems") || "[]");
-deleteBtns.forEach((deleteBtn,index) =>{
-    const grandParentDiv =deleteBtn.parentElement.parentElement.parentElement;
+const deletedItems = JSON.parse(localStorage.getItem("deletedItems") || "[]");
+deleteBtns.forEach((deleteBtn, index) => {
+    const grandParentDiv = deleteBtn.parentElement.parentElement.parentElement;
     grandParentDiv.dataset.id = index;
 
-    if (deletedItems.includes(String(index))){
+    if (deletedItems.includes(String(index))) {
         grandParentDiv.remove();
     }
 
     deleteBtn.addEventListener("click", (e) => {
-        const card=e.target.parentElement.parentElement.parentElement
+        const card = e.target.parentElement.parentElement.parentElement
         const itemId = card.dataset.id;
         card.remove();
 
         const currentDeleted = JSON.parse(localStorage.getItem("deletedItems") || "[]");
         currentDeleted.push(itemId);
 
-        localStorage.setItem("deletedItems",JSON.stringify(currentDeleted));
+        localStorage.setItem("deletedItems", JSON.stringify(currentDeleted));
 
-        console.log("deleted item id:",itemId);
+        console.log("deleted item id:", itemId);
         console.log("All deleted items:", currentDeleted);
     });
 });
 
 // Adding a skill/Service button
 const addBtn = document.getElementById("add-button");
-const skillsContainer = document.getElementById("service-container"); 
+const skillsContainer = document.getElementById("service-container");
 
 addBtn.addEventListener("click", () => {
     const skillName = prompt("Enter Skill/Service Name:");
@@ -157,17 +157,17 @@ addBtn.addEventListener("click", () => {
     skillCard.className = "skill-card flex flex-col jusify-center items-center bg-gray-200 px-4 py-4 gap-y-2 rounded-lg"; // Your classes
     skillCard.dataset.id = nextId; // Will be "added-0", "added-1", etc.
 
-    
+
     const icon = document.createElement("div");
     icon.className = "h-8 text-red-700 border-2";
     icon.textContent = "⚙️";
 
-    
+
     const name = document.createElement("h3");
     name.className = "text-xl font-bold";
     name.textContent = skillName.trim();
 
-    
+
     const statement = document.createElement("p");
     statement.className = "text-center text-gray-600";
     statement.textContent = skillStatement.trim();
@@ -191,13 +191,13 @@ addBtn.addEventListener("click", () => {
 
         // Check if it's an added skill
         if (itemId.startsWith("added-")) {
-            
+
             const skills = JSON.parse(localStorage.getItem("addedSkills") || "[]");
             const index = parseInt(itemId.replace("added-", ""));
             skills.splice(index, 1);
             localStorage.setItem("addedSkills", JSON.stringify(skills));
 
-            
+
             card.remove();
             location.reload();
         } else {
@@ -241,9 +241,9 @@ function loadAddedSkills() {
     addedSkills.forEach((skill, index) => {
         const skillCard = document.createElement("div");
         skillCard.className = "skill-card flex flex-col jusify-center items-center bg-gray-200 px-4 py-4 gap-y-2 rounded-lg";
-        skillCard.dataset.id = "added-" + index; 
+        skillCard.dataset.id = "added-" + index;
 
-      
+
         const icon = document.createElement("div");
         icon.className = "h-8 text-red-700 border-2";
         icon.textContent = "⚙️";
@@ -280,7 +280,7 @@ function loadAddedSkills() {
                 localStorage.setItem("addedSkills", JSON.stringify(skills));
 
                 card.remove();
-                location.reload(); 
+                location.reload();
             }
         });
 
@@ -311,7 +311,7 @@ const homeContainer = document.getElementById("Home");
 const headContainers = document.querySelectorAll("#heading");
 const skillContainers = document.querySelectorAll("#skill-container");
 const projectContainer = document.getElementById("Project");
-const testimonialContainer =document.getElementById("Testimonials");
+const testimonialContainer = document.getElementById("Testimonials");
 const testimonialText = document.getElementById("testimonial-text");
 const emptyDiv = document.getElementById("empty-space");
 const contactContainer = document.getElementById("Contact");
@@ -319,26 +319,26 @@ const footerContainer = document.getElementById("footer");
 const toggleMode = null
 
 
-lightMode.addEventListener("click", () =>{
+lightMode.addEventListener("click", () => {
     var toggleMode = "on";
-    localStorage.setItem("toggleMode",toggleMode);
-    lightMode.classList.replace("flex","hidden");
-    darkMode.classList.replace("hidden","flex");
-    navContainer.classList.replace("bg-white","bg-black");
+    localStorage.setItem("toggleMode", toggleMode);
+    lightMode.classList.replace("flex", "hidden");
+    darkMode.classList.replace("hidden", "flex");
+    navContainer.classList.replace("bg-white", "bg-black");
     serviceContainer.classList.replace("bg-white", "bg-black");
     homeContainer.classList.replace("bg-gray-200", "bg-zinc-900");
-    profileName.classList.replace("text-black","text-white");
+    profileName.classList.replace("text-black", "text-white");
     profileImage.classList.replace("bg-gray-300", "bg-black");
     headContainers.forEach((headContainer) => {
         headContainer.classList.add("text-white");
     });
-    bigCircleIds.forEach((bigCircleId) =>{
-        bigCircleId.classList.replace("bg-gray-200","bg-zinc-900");
+    bigCircleIds.forEach((bigCircleId) => {
+        bigCircleId.classList.replace("bg-gray-200", "bg-zinc-900");
     });
     skillContainers.forEach((skillContainer) => {
         skillContainer.classList.replace("bg-gray-200", "bg-zinc-900");
     });
-    getServiceIds.forEach((getServiceId) =>{
+    getServiceIds.forEach((getServiceId) => {
         getServiceId.classList.add("text-white");
         getServiceId.classList.replace("hover:bg-black", "hover:bg-white");
         getServiceId.classList.replace("hover:text-white", "hover:text-black");
@@ -354,7 +354,7 @@ lightMode.addEventListener("click", () =>{
     testimonialContainer.classList.replace("bg-gray-200", "bg-zinc-900");
     testimonialText.classList.add("text-white");
     contactContainer.classList.replace("bg-gray-200", "bg-zinc-900");
-    emptyDiv.classList.replace("bg-white","bg-black");
+    emptyDiv.classList.replace("bg-white", "bg-black");
     footerContainer.classList.replace("bg-white", "bg-black");
 });
 
@@ -363,24 +363,24 @@ darkMode.addEventListener("click", () => {
     localStorage.setItem("toggleMode", toggleMode);
     darkMode.classList.replace("flex", "hidden");
     lightMode.classList.replace("hidden", "flex");
-    navContainer.classList.replace("bg-black","bg-white");
-    serviceContainer.classList.replace("bg-black","bg-white");
-    homeContainer.classList.replace("bg-zinc-900","bg-gray-200");
-    profileName.classList.replace("text-white","text-black");
-    profileImage.classList.replace("bg-black","bg-gray-300");
+    navContainer.classList.replace("bg-black", "bg-white");
+    serviceContainer.classList.replace("bg-black", "bg-white");
+    homeContainer.classList.replace("bg-zinc-900", "bg-gray-200");
+    profileName.classList.replace("text-white", "text-black");
+    profileImage.classList.replace("bg-black", "bg-gray-300");
     headContainers.forEach((headContainer) => {
         headContainer.classList.remove("text-white");
     });
     bigCircleIds.forEach((bigCircleId) => {
-        bigCircleId.classList.replace("bg-zinc-900","bg-gray-200");
+        bigCircleId.classList.replace("bg-zinc-900", "bg-gray-200");
     });
     skillContainers.forEach((skillContainer) => {
-       skillContainer.classList.replace("bg-zinc-900", "bg-gray-200");
+        skillContainer.classList.replace("bg-zinc-900", "bg-gray-200");
     });
     getServiceIds.forEach((getServiceId) => {
         getServiceId.classList.remove("text-white");
-        getServiceId.classList.replace("hover:bg-white","hover:bg-black");
-        getServiceId.classList.replace("hover:text-black","hover:text-white");
+        getServiceId.classList.replace("hover:bg-white", "hover:bg-black");
+        getServiceId.classList.replace("hover:text-black", "hover:text-white");
     });
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.classList.remove("text-white");
@@ -388,17 +388,35 @@ darkMode.addEventListener("click", () => {
         deleteBtn.classList.replace("hover:text-black", "hover:text-white");
     });
     addBtn.classList.remove("text-white");
-    addBtn.classList.replace("hover:text-black","hover:text-white");
+    addBtn.classList.replace("hover:text-black", "hover:text-white");
     projectContainer.classList.remove("bg-black");
     testimonialContainer.classList.replace("bg-zinc-900", "bg-gray-200");
     testimonialText.classList.remove("text-white");
     contactContainer.classList.replace("bg-zinc-900", "bg-gray-200");
-    emptyDiv.classList.replace("bg-black","bg-white");
+    emptyDiv.classList.replace("bg-black", "bg-white");
     footerContainer.classList.replace("bg-black", "bg-white");
 });
 
+const backToTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.remove("hidden");
+    } else {
+        backToTopBtn.classList.add("hidden");
+    }
+});
+
+backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
 var value = localStorage.getItem("toggleMode");
-if (value=="on"){
+// Default to 'on' (Dark Mode) if no value is set
+if (value === null || value === "on") {
     lightMode.classList.replace("flex", "hidden");
     darkMode.classList.replace("hidden", "flex");
     navContainer.classList.replace("bg-white", "bg-black");
@@ -434,7 +452,7 @@ if (value=="on"){
     emptyDiv.classList.replace("bg-white", "bg-black");
     footerContainer.classList.replace("bg-white", "bg-black");
 }
-else{
+else {
     darkMode.classList.replace("flex", "hidden");
     lightMode.classList.replace("hidden", "flex");
     navContainer.classList.replace("bg-black", "bg-white");
